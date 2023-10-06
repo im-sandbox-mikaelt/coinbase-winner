@@ -35,11 +35,13 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-  deployment:
-    runs-on: ubuntu-latest
-    environment: DEV
-    steps:
-        # ...deployment-specific steps
-      - name: Run only if a PR is opened
-        if: ${{ github.event_name == 'pull_request' }}
-        run: echo Hello, from the PR!
+      - uses: actions/checkout@v3
+        with:
+          repository: '/im-sandbox-mikaelt/hello-coinbase-composite-action'
+          path: ./.github/actions/hello-coinbase-composite-action
+          
+
+      - name: Run a Composite Action from a Private repo
+        uses: ./.github/actions/hello-coinbase-composite-action
+        with:
+          who-to-greet: 'Mona the Octocat with Coinbase'
