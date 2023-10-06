@@ -35,17 +35,19 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
+  composite-job:
+    # The type of runner that the job will run on
+    runs-on: Production2
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:    
+
       - uses: actions/checkout@v3
         with:
           repository: im-sandbox-mikaelt/hello-coinbase-composite-action
           path: ./.github/actions/hello-coinbase-composite-action
           token: ${{ secrets.GH_TOKEN }}
 
-  composite-job:
-    # The type of runner that the job will run on
-    runs-on: Production2
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:          
+      
       - name: Run a Composite Action from a Private repo
         uses: ./.github/actions/hello-coinbase-composite-action
         with:
